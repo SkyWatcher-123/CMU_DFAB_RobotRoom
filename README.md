@@ -3,7 +3,7 @@ This is the ROS setup for the current robots in the CMU SOA DFAB robot room:
 1. ABB IRB120 on Cart (stand-alone)
   1.1. abb_irb120_support (URDF includes intel realsense d435i depth camera with camera holder on joint_5)
   1.2. abb_irb_moveit_config
-![image](https://github.com/SkyWatcher-123/CMU_DFAB_RobotRoom/assets/112517055/2fb3610f-83d5-4328-bc60-0838d6a9522e)
+<img src="https://github.com/SkyWatcher-123/CMU_DFAB_RobotRoom/assets/112517055/2fb3610f-83d5-4328-bc60-0838d6a9522e" alt="Description" width="300"/>
 
 3. ABB IRB 4400_45_196 (stand-alone)
   2.1. abb_irb4400_45_support (Please do not use the original abb_irb4400_support package from ros_industrial!!! That package has an ABB IRB4400L/30, which is a different robot configuration. Using the wrong package can cause lethal damage!!!)
