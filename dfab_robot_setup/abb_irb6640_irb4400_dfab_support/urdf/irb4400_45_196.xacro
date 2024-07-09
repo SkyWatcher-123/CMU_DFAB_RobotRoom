@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+
+<robot name="abb_irb4400_45_196" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find abb_irb4400_45_support)/urdf/irb4400_45_196_macro.xacro"/>
+  <xacro:abb_irb4400_45_196 prefix=""/>
+</robot>
