@@ -1,0 +1,168 @@
+irb6640_controller:
+  type: effort_controllers/JointTrajectoryController
+  joints:
+    - irb6640_track_1
+    - irb6640_joint_1
+    - irb6640_joint_2
+    - irb6640_joint_3
+    - irb6640_joint_4
+    - irb6640_joint_5
+    - irb6640_joint_6
+  gains:
+    irb6640_track_1:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    irb6640_joint_1:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    irb6640_joint_2:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    irb6640_joint_3:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    irb6640_joint_4:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    irb6640_joint_5:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    irb6640_joint_6:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+irb4400_controller:
+  type: effort_controllers/JointTrajectoryController
+  joints:
+    - irb4400_joint_1
+    - irb4400_joint_2
+    - irb4400_joint_3
+    - irb4400_joint_4
+    - irb4400_joint_5
+    - irb4400_joint_6
+  gains:
+    irb4400_joint_1:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    irb4400_joint_2:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    irb4400_joint_3:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    irb4400_joint_4:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    irb4400_joint_5:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    irb4400_joint_6:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+dfab_multirobot_controller:
+  type: effort_controllers/JointTrajectoryController
+  joints:
+    - irb4400_joint_1
+    - irb4400_joint_2
+    - irb4400_joint_3
+    - irb4400_joint_4
+    - irb4400_joint_5
+    - irb4400_joint_6
+    - irb6640_track_1
+    - irb6640_joint_1
+    - irb6640_joint_2
+    - irb6640_joint_3
+    - irb6640_joint_4
+    - irb6640_joint_5
+    - irb6640_joint_6
+  gains:
+    irb4400_joint_1:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    irb4400_joint_2:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    irb4400_joint_3:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    irb4400_joint_4:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    irb4400_joint_5:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    irb4400_joint_6:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    irb6640_track_1:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    irb6640_joint_1:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    irb6640_joint_2:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    irb6640_joint_3:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    irb6640_joint_4:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    irb6640_joint_5:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
+    irb6640_joint_6:
+      p: 100
+      d: 1
+      i: 1
+      i_clamp: 1
