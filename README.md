@@ -12,6 +12,8 @@ This is the ROS setup for the current robots in the CMU SOA DFAB robot room:
 4. ABB IRB6640 with Track 6004 + ABB IRB 4400_45_196 (separate and combined move_group)
 	4.1.  abb_irb6640_irb4400_support
 	4.2.  dfab_irb6640_irb4400_moveit_config (with DFAB.scene)
-5. DFAB_robots: a user wrapper package allowing end-effector customization, scene loadings, etc.
+![image](https://github.com/SkyWatcher-123/CMU_DFAB_RobotRoom/assets/112517055/32b23b33-273d-4c6b-a0fe-8257c01389f7)
+6. DFAB_robots: a user wrapper package allowing end-effector customization, scene loadings, etc.
 
 Important Notes: ABB IRB4400/45 in DFAB has a IRC5 Controller with RobotWare 5.15.06, therefore it only supports abb_driver (trajectory instruction), not abb_driver (which includes RWS I/O controls and EGM)
+
