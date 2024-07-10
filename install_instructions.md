@@ -9,8 +9,9 @@ Prior to Installation, please make sure the following:
 
 If a catkin_ws is not yet created, please follow [catkin_ws_tutorial](https://wiki.ros.org/catkin/Tutorials/create_a_workspace) to do so
 
-$ cd ~/catkin_ws/src
-$ git clone https://github.com/SkyWatcher-123/CMU_DFAB_RobotRoom.git
-$ cd ..
+$ cd ~/catkin_ws/src  
+$ git clone https://github.com/SkyWatcher-123/CMU_DFAB_RobotRoom.git  
+$ cd ~/catkin_ws/src  
+$ rosdep install --from-paths src --ignore-src -r -y
 $ catkin_make
-$ source devel/setup.bash
+$ source devel/setup.bash  
