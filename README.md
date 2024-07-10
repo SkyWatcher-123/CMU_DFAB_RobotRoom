@@ -1,4 +1,4 @@
-# CMU SoA DFAB RobotRoom
+# CMU SoA DFAB RobotRoom (WIP)
 This is the ROS setup for the current robots in the CMU SOA DFAB robot room: 
 1. ABB IRB120 on Cart (stand-alone)  
   1.1. abb_irb120_support (URDF includes intel realsense d435i depth camera with camera holder on joint_5)  
