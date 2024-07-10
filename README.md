@@ -1,5 +1,4 @@
 # CMU SoA DFAB RobotRoom (WIP)
-It is not ready please don't clone yet...
 
 This is the ROS setup for the current robots in the CMU SOA DFAB robot room: 
 1. ABB IRB120 on Cart (stand-alone)  
