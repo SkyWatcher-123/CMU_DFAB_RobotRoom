@@ -1,7 +1,7 @@
 # CMU SoA DFAB RobotRoom (WIP/not fully ready yet)
 
 This is the ROS setup for the current robots in the CMU SOA DFAB robot room: 
-1. ABB IRB120 on Cart (stand-alone)  
+1. ABB IRB120 on Cart (stand-alone)  (ready)
   1.1. abb_irb120_support (URDF includes intel realsense d435i depth camera with camera holder on joint_5)  
   1.2. abb_irb_moveit_config  
 <img src="https://github.com/SkyWatcher-123/CMU_DFAB_RobotRoom/assets/112517055/2fb3610f-83d5-4328-bc60-0838d6a9522e" alt="Description" width="300"/>
@@ -11,7 +11,7 @@ This is the ROS setup for the current robots in the CMU SOA DFAB robot room:
 2. ABB IRB 4400_45_196 (stand-alone)  (WIP)
   2.1. abb_irb4400_45_support (Please do not use the original abb_irb4400_support package from ros_industrial!!! That package has an ABB IRB4400L/30, which is a different robot configuration. Using the wrong package can cause lethal damage!!!)  
   2.2. abb_irb4400_45_196_config  
-3. ABB IRB6640 with Track 6004 (stand-alone)  
+3. ABB IRB6640 with Track 6004 (stand-alone)  (ready)
   3.1. abb_irb6640_support (note that this package is also different from the original package by ros_industrial, it includes a 6004 track)  
   3.2. abb_irb6640_moveit_config  
 4. ABB IRB6640 with Track 6004 + ABB IRB 4400_45_196 (separate and combined move_group)  (WIP)  
