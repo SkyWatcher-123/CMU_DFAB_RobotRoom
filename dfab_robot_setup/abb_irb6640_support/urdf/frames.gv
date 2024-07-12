@@ -1,0 +1,17 @@
+digraph G {
+"link_6" -> "tool0"[label="Broadcaster: /robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1720386728.244 sec old)\nBuffer length: 0.000 sec\n"];
+"link_5" -> "link_6"[label="Broadcaster: /robot_state_publisher\nAverage rate: 5.691 Hz\nMost recent transform: 1720386727.566 ( 0.678 sec old)\nBuffer length: 4.393 sec\n"];
+"track_loader" -> "base_link"[label="Broadcaster: /robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1720386728.244 sec old)\nBuffer length: 0.000 sec\n"];
+"track" -> "track_loader"[label="Broadcaster: /robot_state_publisher\nAverage rate: 5.691 Hz\nMost recent transform: 1720386727.566 ( 0.678 sec old)\nBuffer length: 4.393 sec\n"];
+"base_link" -> "link_1"[label="Broadcaster: /robot_state_publisher\nAverage rate: 5.691 Hz\nMost recent transform: 1720386727.566 ( 0.678 sec old)\nBuffer length: 4.393 sec\n"];
+"link_1" -> "link_2"[label="Broadcaster: /robot_state_publisher\nAverage rate: 5.691 Hz\nMost recent transform: 1720386727.566 ( 0.678 sec old)\nBuffer length: 4.393 sec\n"];
+"link_2" -> "link_3"[label="Broadcaster: /robot_state_publisher\nAverage rate: 5.691 Hz\nMost recent transform: 1720386727.566 ( 0.678 sec old)\nBuffer length: 4.393 sec\n"];
+"link_3" -> "link_4"[label="Broadcaster: /robot_state_publisher\nAverage rate: 5.691 Hz\nMost recent transform: 1720386727.566 ( 0.678 sec old)\nBuffer length: 4.393 sec\n"];
+"link_4" -> "link_5"[label="Broadcaster: /robot_state_publisher\nAverage rate: 5.691 Hz\nMost recent transform: 1720386727.566 ( 0.678 sec old)\nBuffer length: 4.393 sec\n"];
+"link_1" -> "link_cylinder"[label="Broadcaster: /robot_state_publisher\nAverage rate: 5.691 Hz\nMost recent transform: 1720386727.566 ( 0.678 sec old)\nBuffer length: 4.393 sec\n"];
+"link_2" -> "link_piston"[label="Broadcaster: /robot_state_publisher\nAverage rate: 5.691 Hz\nMost recent transform: 1720386727.566 ( 0.678 sec old)\nBuffer length: 4.393 sec\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1720386728.244"[ shape=plaintext ] ;
+ }->"track";
+}
