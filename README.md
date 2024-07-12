@@ -15,8 +15,8 @@ This is the ROS setup for the current robots in the CMU SOA DFAB robot room:
   3.1. abb_irb6640_support (note that this package is also different from the original package by ros_industrial, it includes a 6004 track)  
   3.2. abb_irb6640_moveit_config  
 4. ABB IRB6640 with Track 6004 + ABB IRB 4400_45_196 (separate and combined move_group)  (WIP)  
-  4.1.  abb_irb6640_irb4400_support  
-  4.2.  dfab_irb6640_irb4400_moveit_config (with DFAB.scene)  
+  4.1.  abb_irb6640_irb4400_support  (ready)  
+  4.2.  dfab_irb6640_irb4400_moveit_config (with DFAB.scene)  (WIP)
 ![image](https://github.com/SkyWatcher-123/CMU_DFAB_RobotRoom/assets/112517055/32b23b33-273d-4c6b-a0fe-8257c01389f7)  
 5. DFAB_robots: a user wrapper package allowing end-effector customization, scene loadings, etc.  
 
