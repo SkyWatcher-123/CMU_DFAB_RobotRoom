@@ -8,7 +8,7 @@ This is the ROS setup for the current robots in the CMU SOA DFAB robot room:
 <img src="https://github.com/SkyWatcher-123/CMU_DFAB_RobotRoom/assets/112517055/3783a656-c42e-44c4-a024-0eb5eeb37e0f" alt="Description" width="300"/
 >
 
-2. ABB IRB 4400_45_196 (stand-alone)  (WIP)  
+2. ABB IRB 4400_45_196 (stand-alone)  (ready)  
   2.1. abb_irb4400_45_support (Please do not use the original abb_irb4400_support package from ros_industrial!!! That package has an ABB IRB4400L/30, which is a different robot configuration. Using the wrong package can cause lethal damage!!!)  
   2.2. abb_irb4400_45_196_config  
 3. ABB IRB6640 with Track 6004 (stand-alone)  (ready)  
