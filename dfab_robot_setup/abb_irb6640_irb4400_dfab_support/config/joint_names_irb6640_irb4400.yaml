@@ -1,4 +1,0 @@
-controller_joint_names: 
-['irb6640_joint_1', 'irb6640_joint_2', 'irb6640_joint_3', 'irb6640_joint_4', 'irb6640_joint_5', 'irb6640_joint_6','irb6640_track1',
-  'irb4400_joint_1', 'irb4400_joint_2', 'irb4400_joint_3', 'irb4400_joint_4', 'irb4400_joint_5', 'irb4400_joint_6'
-]

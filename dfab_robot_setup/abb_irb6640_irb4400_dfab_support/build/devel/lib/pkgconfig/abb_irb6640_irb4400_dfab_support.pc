@@ -1,8 +1,0 @@
-prefix=/home/vina/catkin_ws/src/abb_irb6640_irb4400_dfab_support/build/devel
-
-Name: abb_irb6640_irb4400_dfab_support
-Description: Description of abb_irb6640_irb4400_dfab_support
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
