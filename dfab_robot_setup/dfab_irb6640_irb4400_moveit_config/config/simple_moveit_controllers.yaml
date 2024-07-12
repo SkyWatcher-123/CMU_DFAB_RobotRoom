@@ -1,0 +1,42 @@
+controller_list:
+  - name: irb6640_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: True
+    joints:
+      - irb6640_track_1
+      - irb6640_joint_1
+      - irb6640_joint_2
+      - irb6640_joint_3
+      - irb6640_joint_4
+      - irb6640_joint_5
+      - irb6640_joint_6
+  - name: irb4400_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: True
+    joints:
+      - irb4400_joint_1
+      - irb4400_joint_2
+      - irb4400_joint_3
+      - irb4400_joint_4
+      - irb4400_joint_5
+      - irb4400_joint_6
+  - name: dfab_multirobot_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: True
+    joints:
+      - irb4400_joint_1
+      - irb4400_joint_2
+      - irb4400_joint_3
+      - irb4400_joint_4
+      - irb4400_joint_5
+      - irb4400_joint_6
+      - irb6640_track_1
+      - irb6640_joint_1
+      - irb6640_joint_2
+      - irb6640_joint_3
+      - irb6640_joint_4
+      - irb6640_joint_5
+      - irb6640_joint_6
