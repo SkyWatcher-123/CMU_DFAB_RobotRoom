@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Site BuildName="(empty)"
+	BuildStamp="20240710-0112-Experimental"
+	Name="vina-ros"
+	Generator="ctest-3.16.3"
+	CompilerName="/usr/lib/ccache/c++"
+	CompilerVersion="9.4.0"
+	OSName="Linux"
+	Hostname="vina-ros"
+	OSRelease="5.15.0-113-generic"
+	OSVersion="#123~20.04.1-Ubuntu SMP Wed Jun 12 17:33:13 UTC 2024"
+	OSPlatform="x86_64"
+	Is64Bits="1"
+	VendorString="AuthenticAMD"
+	VendorID="Advanced Micro Devices"
+	FamilyID="25"
+	ModelID="80"
+	ProcessorCacheSize="512"
+	NumberOfLogicalCPU="16"
+	NumberOfPhysicalCPU="8"
+	TotalVirtualMemory="2047"
+	TotalPhysicalMemory="15386"
+	LogicalProcessorsPerPhysical="2"
+	ProcessorClockFrequency="4179.78"
+	>
+	<Testing>
+		<StartDateTime>Jul 09 21:12 EDT</StartDateTime>
+		<StartTestTime>1720573947</StartTestTime>
+		<TestList/>
+		<EndDateTime>Jul 09 21:12 EDT</EndDateTime>
+		<EndTestTime>1720573947</EndTestTime>
+		<ElapsedMinutes>0</ElapsedMinutes>
+	</Testing>
+</Site>
