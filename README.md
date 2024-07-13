@@ -25,5 +25,5 @@ This is the ROS setup for the current robots in the CMU SOA DFAB robot room:
 
 6. DFAB_robots: a user wrapper package allowing end-effector customization, scene loadings, etc.  
 
-Important Notes: ABB IRB4400/45 in DFAB has a IRC5 Controller with RobotWare 5.15.06, therefore it only supports abb_driver (trajectory instruction), not abb_driver (which includes RWS I/O controls and EGM)  
+Important Notes: ABB IRB4400/45 in DFAB has a IRC5 Controller with RobotWare 5.15.06, therefore it only supports abb_driver (trajectory instruction), not abb_robot_driver (which includes RWS I/O controls and EGM)  
 
