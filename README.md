@@ -10,8 +10,10 @@ This is the ROS setup for the current robots in the CMU SOA DFAB robot room:
 
 2. ABB IRB 4400_45_196 (stand-alone)  (ready)  
   2.1. abb_irb4400_45_support (Please do not use the original abb_irb4400_support package from ros_industrial!!! That package has an ABB IRB4400L/30, which is a different robot configuration. Using the wrong package can cause lethal damage!!!)  
-  2.2. abb_irb4400_45_196_config  
-3. ABB IRB6640 with Track 6004 (stand-alone)  (ready)  
+  2.2. abb_irb4400_45_196_config
+   <img src="https://github.com/user-attachments/assets/7fc07b08-1edd-4aaa-8fce-b6f70eb0efa4" alt="Description" width="800"/>  
+
+4. ABB IRB6640 with Track 6004 (stand-alone)  (ready)  
   3.1. abb_irb6640_support (note that this package is also different from the original package by ros_industrial, it includes a 6004 track)  
   3.2. abb_irb6640_moveit_config  
    <img src="https://github.com/user-attachments/assets/334cf7d6-b3e7-41bb-8c81-122abb72973e" alt="Description" width="800"/>  
