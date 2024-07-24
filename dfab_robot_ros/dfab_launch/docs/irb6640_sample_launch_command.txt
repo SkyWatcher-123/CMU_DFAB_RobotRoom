@@ -1,0 +1,1 @@
+1. roslaunch abb_irb6640_moveit_config moveit_planning_execution.launch sim:=true add_sensor_mount:=true sensor_mount_filename:=d415.stl sensor_mount_offset_xyz:="'-0.007 0.1 0.1821'" sensor_mount_offset_rpy:="'1.570796 0 1.570796'" add_eef:=true eef_filename:=suction_tool.stl tcp_offset_xyz:="'0.1385 0 0.3940'" tcp_offset_rpy:="'0 0 0'"

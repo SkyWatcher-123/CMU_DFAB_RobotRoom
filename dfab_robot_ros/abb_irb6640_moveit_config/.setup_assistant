@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: abb_irb6640_support
+    relative_path: urdf/irb6640_185_280.urdf
+    xacro_args: ""
+  SRDF:
+    relative_path: config/abb_irb6640_185_280.srdf
+  CONFIG:
+    author_name: Jiaying (Vina) Wei
+    author_email: jwei3@andrew.cmu.edu
+    generated_timestamp: 1720304291

@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+
+<robot name="abb_irb120_3_58" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:property name="add_eef_xacro" value="$(arg add_eef)"/> 
+  <xacro:property name="eef_filename_xacro" value="$(arg eef_filename)" />  
+  <xacro:property name="tcp_offset_xyz_xacro" value="$(arg tcp_offset_xyz)"/>
+  <xacro:property name="tcp_offset_rpy_xacro" value="$(arg tcp_offset_rpy)"/>
+  <xacro:property name="realsense_camera_xacro" value="$(arg realsense_camera)" />
+  <xacro:property name="camera_axis_xacro" value="$(arg camera_axis)"/> 
+
+  <xacro:include filename="$(find abb_irb120_support)/urdf/irb120_dfab_macro.xacro"/>
+  <xacro:abb_irb120_3_58 prefix="" />
+</robot>

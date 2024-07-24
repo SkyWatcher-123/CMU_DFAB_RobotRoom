@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <!--xacro:macro name="intel_realsense_mount" params="prefix topic parent_link"-->
+
+
+    <link name="realsense_lens">
+      
+
+      <!-- <collision>
+        <origin xyz="-0.01 -0.04 0.0100" rpy="1.570796 0 -1.570796" />
+        <geometry>
+          <mesh filename="package://realsense2_description/meshes/d415.stl" />
+        </geometry>
+      </collision> -->
+    </link>
+
+    <!-- <link name="isaac_camera"/> -->
+
+
+  <!-- <joint name="irb120_isaac_camera_joint" type="fixed">
+    <origin xyz="-0.035 -0.04 -0.01" rpy="-1.570796 0 1.570796 " />
+    <parent link="camera_holder"/>
+    <child link="isaac_camera" />
+  </joint> -->
+
+    <joint type="fixed" name="realsense_lens_joint">
+      <!-- <origin xyz="-0.01 0 -0.0125" rpy="0 0 ${pi}" /> -->
+      <origin xyz="-0.01 0 -0.0125" rpy="0 0 ${pi}" />
+      <parent link="camera_pivot" />
+      <child link="realsense_lens" />
+    </joint>
+
+
+    <!--xacro:intel_realsense frame="realsense" topic="${topic}"/-->
+  <!--/xacro:macro-->
+</robot>

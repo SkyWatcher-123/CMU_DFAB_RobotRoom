@@ -1,0 +1,16 @@
+<launch>
+  <!-- publish the robot state (tf transforms) -->
+  <arg name="6640_ns" default="irb6640" />
+  <arg name="4400_ns" default="irb4400" />
+  <remap from="/irb6640/follow_joint_trajectory" to="$(arg 6640_ns)/joint_trajectory_action"/>
+  <remap from="/irb4400/follow_joint_trajectory" to="$(arg 4400_ns)/joint_trajectory_action"/>
+  
+
+  <include file="$(find dfab_irb6640_irb4400_moveit_config)/launch/move_group.launch">
+    <arg name="publish_monitored_planning_scene" value="true" />
+  </include>
+
+  <include file="$(find dfab_irb6640_irb4400_moveit_config)/launch/moveit_rviz.launch">
+    <!-- <arg name="config" value="true"/> -->
+  </include>
+</launch>

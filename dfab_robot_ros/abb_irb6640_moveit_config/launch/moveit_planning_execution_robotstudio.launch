@@ -1,0 +1,101 @@
+<launch>
+  <arg name="ns" default="irb6640" />
+
+  <arg name = "add_eef" default= "false"/>
+  <arg name = "eef_filename" default="empty.stl"/>
+  <arg name = "tcp_offset_xyz" default = "'0 0 0'"/>
+  <arg name = "tcp_offset_rpy" default = "'0 0 0'"/>
+  <arg name = "add_sensor_mount" default = "false"/>
+  <arg name = "sensor_mount_filename" default = "empty.stl"/>
+  <arg name = "sensor_mount_offset_xyz" default = "'0 0 0'"/>
+  <arg name = "sensor_mount_offset_rpy" default = "'0 0 0'"/>
+
+  
+  <!-- The planning and execution components of MoveIt! configured to run -->
+  <!-- using the ROS-Industrial interface. -->
+ 
+  <!-- Non-standard joint names:
+       - Create a file [robot_moveit_config]/config/joint_names.yaml
+           controller_joint_names: [joint_1, joint_2, ... joint_N] 
+       - Update with joint names for your robot (in order expected by rbt controller)
+       - and uncomment the following line: -->
+  <group ns="$(arg ns)">
+    <rosparam command="load" file="$(find abb_irb6640_support)/config/joint_names_irb6640_185_280.yaml" />
+  </group>
+  <rosparam command="load" file="$(find abb_irb6640_support)/config/joint_names_irb6640_185_280.yaml" />
+  <!-- the "sim" argument controls whether we connect to a Simulated or Real robot -->
+  <!--  - if sim=false, a robot_ip argument is required -->
+  <arg name="sim" default="false" />
+  <arg name="robot_ip" default="10.0.0.22" />
+
+  <!-- By default, we do not start a database (it can be large) -->
+  <arg name="db" default="false" />
+  <!-- Allow user to specify database location -->
+  <arg name="db_path" default="$(find abb_irb6640_moveit_config)/default_warehouse_mongo_db" />
+
+  <!-- load the robot_description parameter before launching ROS-I nodes -->
+  <group ns="$(arg ns)">
+    <param name="robot_description" textfile="$(find abb_irb6640_support)/urdf/irb6640_185_280.xacro" />
+    <param name="robot_description_semantic" textfile="$(find abb_irb6640_moveit_config)/config/abb_irb6640_185_280.srdf" />
+  </group>
+
+  <include file="$(find abb_irb6640_moveit_config)/launch/planning_context.launch" >
+    <arg name="load_robot_description" value="true" />
+    <arg name="add_eef" value="$(arg add_eef)"/>
+    <arg name="eef_filename" value="$(arg eef_filename)"/>
+    <arg name="tcp_offset_xyz" value="$(arg tcp_offset_xyz)"/>
+    <arg name="tcp_offset_rpy" value="$(arg tcp_offset_rpy)"/>
+    <arg name="add_sensor_mount" value="$(arg add_sensor_mount)"/>
+    <arg name="sensor_mount_filename" value="$(arg sensor_mount_filename)"/>
+    <arg name="sensor_mount_offset_xyz" value="$(arg sensor_mount_offset_xyz)"/>
+    <arg name="sensor_mount_offset_rpy" value="$(arg sensor_mount_offset_rpy)"/>
+  </include>
+
+  <!-- run the robot simulator and action interface nodes -->
+  <group if="$(arg sim)" >
+    <include file="$(find industrial_robot_simulator)/launch/robot_interface_simulator_ns.launch" >
+      <arg name="ns" value="$(arg ns)" />
+    </include>
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  </group>
+
+
+  <arg name="use_gui" default="false" />
+  <arg name="jnt_stat_source" value="[$(arg ns)/joint_states]" />
+  <arg name="jnt_stat_pub_rate" default="5" />
+
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="/use_gui" value="$(arg use_gui)"/>
+    <param name="/rate" value="$(arg jnt_stat_pub_rate)"/>
+    <rosparam param="/source_list" subst_value="True">$(arg jnt_stat_source)</rosparam>
+  </node>
+
+  <!-- run the "real robot" interface nodes -->
+  <!--   - this typically includes: robot_state, motion_interface, and joint_trajectory_action nodes -->
+  <!--   - replace these calls with appropriate robot-specific calls or launch files -->
+  <group unless="$(arg sim)" ns="$(arg ns)">
+    <include file="$(find abb_irb6640_support)/launch/robot_interface_download_irb6640_185_280.launch" >
+      <arg name="robot_ip" value="$(arg robot_ip)"/>
+    </include>
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  </group>
+
+  <!-- publish the robot state (tf transforms) -->
+  
+
+  <include file="$(find abb_irb6640_moveit_config)/launch/move_group.launch">
+    <arg name="publish_monitored_planning_scene" value="true" />
+  </include>
+
+  <include file="$(find abb_irb6640_moveit_config)/launch/moveit_rviz.launch">
+    <arg name="config" value="true"/>
+  </include>
+  
+  <!-- If database loading was enabled, start mongodb as well -->
+  <include file="$(find abb_irb6640_moveit_config)/launch/default_warehouse_db.launch" if="$(arg db)">
+    <arg name="moveit_warehouse_database_path" value="$(arg db_path)"/>
+  </include>
+
+
+</launch>

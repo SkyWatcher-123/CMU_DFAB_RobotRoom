@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<robot  xmlns:xacro="http://wiki.ros.org/xacro">
+  
+  <!-- camera holder for irb120 -->
+  <!--xacro: macro name="camera_holder" params="parent"-->
+  <link name="camera_holder">
+    <visual>
+      <geometry>
+        <mesh filename="package://abb_irb120_support/meshes/irb120_3_58/accessories/irb120_camera_holder.stl" />
+      </geometry>
+    </visual>
+    <collision>
+        <geometry>
+          <mesh filename="package://abb_irb120_support/meshes/irb120_3_58/accessories/irb120_camera_holder.stl"/>
+        </geometry>
+        <!-- <xacro:material_abb_yellow /> -->
+    </collision>
+    <inertial>
+      <mass value="0.01" />
+      <origin xyz="0 0 0" />
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0"/>
+    </inertial>
+  </link>
+
+  <link name="camera_pivot">
+
+    <visual>
+        <!--
+          the model's origin is in the middle & it's rotated to lie in
+          the optical standard with X left, Y up, and Z forward
+        -->
+        <origin xyz="-0.02 0 0" rpy="1.570796 0 -1.570796" />
+        <geometry>
+          <!-- Origin of this mesh is the base of the bracket. -->
+          <mesh filename="package://realsense2_description/meshes/d415.stl" />
+        </geometry>
+    </visual>
+  </link>
+
+  <joint name="camera_holder_joint" type="fixed">
+    <origin xyz="0.062 0 0" rpy="0 0 0" />
+    <parent link="link_5"/>
+    <child link="camera_holder" />
+  </joint>
+
+  <joint name="camera_holder_pivot" type="fixed">
+    <origin xyz="0 0 0.07" rpy="${pi} ${pi} 0" />
+    <parent link="camera_holder"/>
+    <child link="camera_pivot" />
+  </joint>
+</robot>

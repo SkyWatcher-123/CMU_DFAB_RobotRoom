@@ -1,0 +1,43 @@
+<launch>
+  <arg name = "add_eef" default= "false"/>
+  <arg name = "eef_filename" default=""/>
+  <arg name = "tcp_offset_xyz" default = "'0 0 0'"/>
+  <arg name = "tcp_offset_rpy" default = "'0 0 0'"/>
+  <arg name = "add_sensor_mount" default = "false"/>
+  <arg name = "sensor_mount_filename" default = ""/>
+  <arg name = "sensor_mount_offset_xyz" default = "'0 0 0'"/>
+  <arg name = "sensor_mount_offset_rpy" default = "'0 0 0'"/>
+  <!-- By default we do not overwrite the URDF. Change the following to true to change the default behavior -->
+  <arg name="load_robot_description" default="false"/>
+
+  <!-- The name of the parameter under which the URDF is loaded -->
+  <arg name="robot_description" default="robot_description"/>
+
+  <!-- Load universal robot description format (URDF) -->
+  <param if="$(arg load_robot_description)" name="$(arg robot_description)" command="xacro  '$(find abb_irb4400_45_support)/urdf/irb4400_45_196.xacro'
+  add_eef:=$(arg add_eef)
+  eef_filename:=$(arg eef_filename)
+  tcp_offset_xyz:=$(arg tcp_offset_xyz)
+  tcp_offset_rpy:=$(arg tcp_offset_rpy)
+  add_sensor_mount:=$(arg add_sensor_mount)
+  sensor_mount_filename:=$(arg sensor_mount_filename)
+  sensor_mount_offset_xyz:=$(arg sensor_mount_offset_xyz)
+  sensor_mount_offset_rpy:=$(arg sensor_mount_offset_rpy)
+  "/>
+
+  <!-- The semantic description that corresponds to the URDF -->
+  <param name="$(arg robot_description)_semantic" textfile="$(find abb_irb4400_45_196_moveit_config)/config/abb_irb4400_45_196.srdf" />
+
+  <!-- Load updated joint limits (override information from URDF) -->
+  <group ns="$(arg robot_description)_planning">
+    <rosparam command="load" file="$(find abb_irb4400_45_196_moveit_config)/config/joint_limits.yaml"/>
+    <rosparam command="load" file="$(find abb_irb4400_45_196_moveit_config)/config/cartesian_limits.yaml"/>
+  </group>
+
+  <!-- Load default settings for kinematics; these settings are overridden by settings in a node's namespace -->
+  <group ns="$(arg robot_description)_kinematics">
+    <rosparam command="load" file="$(find abb_irb4400_45_196_moveit_config)/config/kinematics.yaml"/>
+
+  </group>
+
+</launch>

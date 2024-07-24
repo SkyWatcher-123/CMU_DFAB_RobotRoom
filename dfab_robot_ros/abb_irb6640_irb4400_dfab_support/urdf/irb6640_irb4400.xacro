@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<robot name="irb6640_irb4400_dfab" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:property name="prefix6640" value="irb6640_"/> 
+  <xacro:property name="prefix4400" value="irb4400_"/>
+
+  <xacro:include filename="$(find abb_irb6640_irb4400_dfab_support)/urdf/irb6640_185_280_macro.xacro"/>
+  <xacro:abb_irb6640_185_280 prefix="${prefix6640}"/>
+
+  <xacro:include filename="$(find abb_irb6640_irb4400_dfab_support)/urdf/irb4400_45_196_macro.xacro"/>
+  <xacro:abb_irb4400_45_196 prefix="${prefix4400}"/>
+
+  <link name="world"/>
+
+  <joint name="irb6640_world_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="world"/>
+    <child link="${prefix6640}track"/>
+  </joint>
+
+  <joint name="irb4400_world_joint" type="fixed">
+    <origin xyz="8.226 0 -0.382" rpy="0 0 3.14159"/>
+    <parent link="world"/>
+    <child link="${prefix4400}base_link"/>
+  </joint>
+</robot>
+

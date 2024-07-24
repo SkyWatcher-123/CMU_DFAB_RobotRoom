@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name = "sim" default = "false"/>
+  <arg name="irb6640_robot_ip" unless="$(arg sim)" default="192.168.1.20"/>
+  <arg name="irb4400_robot_ip" unless="$(arg sim)" default="192.168.1.10" />
+  <arg name="6640_ns" default="irb6640" />
+  <arg name="4400_ns" default="irb4400" />
+
+  <arg name = "irb6640_add_eef" default= "false"/>
+  <arg name = "irb6640_eef_filename" default="empty.stl"/>
+  <arg name = "irb6640_tcp_offset_xyz" default = "'0 0 0'"/>
+  <arg name = "irb6640_tcp_offset_rpy" default = "'0 0 0'"/>
+  <arg name = "irb6640_add_sensor_mount" default = "false"/>
+  <arg name = "irb6640_sensor_mount_filename" default = "empty.stl"/>
+  <arg name = "irb6640_sensor_mount_offset_xyz" default = "'0 0 0'"/>
+  <arg name = "irb6640_sensor_mount_offset_rpy" default = "'0 0 0'"/>
+
+
+  <arg name = "irb4400_add_eef" default= "false"/>
+  <arg name = "irb4400_eef_filename" default="empty.stl"/>
+  <arg name = "irb4400_tcp_offset_xyz" default = "'0 0 0'"/>
+  <arg name = "irb4400_tcp_offset_rpy" default = "'0 0 0'"/>
+  <arg name = "irb4400_add_sensor_mount" default = "false"/>
+  <arg name = "irb4400_sensor_mount_filename" default = "empty.stl"/>
+  <arg name = "irb4400_sensor_mount_offset_xyz" default = "'0 0 0'"/>
+  <arg name = "irb4400_sensor_mount_offset_rpy" default = "'0 0 0'"/>
+
+
+  <arg name = "load_scene" default = "true"/>
+  <arg name = "scene_filename" default = "dfab_multirobot_light.scene"/>
+  <arg name = "construct_octomap" default = "false"/>
+  <arg name = "load_octomap" default = "false"/>
+  <arg name = "octomap_filename" default = "null"/>
+
+  <!-- init irb6640 ros controller with customized end-effector -->
+  <include file="$(find abb_irb6640_irb4400_moveit_config)/launch/moveit_planning_execution.launch">
+    <arg name="sim" value="$(arg sim)" />
+    <arg name="irb6640_robot_ip" value="$(arg irb6640_robot_ip)" />
+    <arg name="irb4400_robot_ip" value="$(arg irb4400_robot_ip)" />
+    <arg name="6640_ns" value="irb6640" />
+    <arg name="4400_ns" value="irb4400" />
+    <arg name="irb6640_add_eef" value="$(arg irb6640_add_eef)"/>
+    <arg name="irb6640_eef_filename" value="$(arg irb6640_eef_filename)"/>
+    <arg name="irb6640_tcp_offset_xyz" value="$(arg irb6640_tcp_offset_xyz)"/>
+    <arg name="irb6640_tcp_offset_rpy" value="$(arg irb6640_tcp_offset_rpy)"/>
+    <arg name="irb6640_add_sensor_mount" value="$(arg irb6640_add_sensor_mount)"/>
+    <arg name="irb6640_sensor_mount_filename" value="$(arg irb6640_sensor_mount_filename)"/>
+    <arg name="irb6640_sensor_mount_offset_xyz" value="$(arg irb6640_sensor_mount_offset_xyz)"/>
+    <arg name="irb6640_sensor_mount_offset_rpy" value="$(arg irb6640_sensor_mount_offset_rpy)"/>
+
+    <arg name="irb4400_add_eef" value="$(arg irb4400_add_eef)"/>
+    <arg name="irb4400_eef_filename" value="$(arg irb4400_eef_filename)"/>
+    <arg name="irb4400_tcp_offset_xyz" value="$(arg irb4400_tcp_offset_xyz)"/>
+    <arg name="irb4400_tcp_offset_rpy" value="$(arg irb4400_tcp_offset_rpy)"/>
+    <arg name="irb4400_add_sensor_mount" value="$(arg irb4400_add_sensor_mount)"/>
+    <arg name="irb4400_sensor_mount_filename" value="$(arg irb4400_sensor_mount_filename)"/>
+    <arg name="irb4400_sensor_mount_offset_xyz" value="$(arg irb4400_sensor_mount_offset_xyz)"/>
+    <arg name="irb4400_sensor_mount_offset_rpy" value="$(arg irb4400_sensor_mount_offset_rpy)"/>
+  </include>
+
+<!-- only irb6640 with robotware 6.0 is supported for ABB RWS -->
+  <group unless="$(arg sim)">
+    <include file="$(find abb_robot_bringup_examples)/launch/ex1_rws_only.launch">
+      <arg name="robot_ip" value="$(arg irb6640_robot_ip)" />
+    </include>
+  </group>
+
+
+  <!-- To load a simple geometry scene(xxx.scene) -->
+  <group if="$(arg load_scene)">
+    <node name = "moveit_publish_scene_from_text" pkg= "moveit_ros_planning" type = "moveit_publish_scene_from_text" args= "/home/vina/catkin_ws/src/abb/abb_irb6640_irb4400_moveit_config/scene/$(arg scene_filename)"/>
+  </group>
+
+  <!-- To load a pre-existing octomap -->
+  <group if="$(arg load_octomap)">
+    <node name="load_map" pkg="moveit_ros_move_group" type="load_map" args="$(arg octomap_filename)" output="screen"/>
+  </group>
+
+  
+  <!-- init grasshopper connection with rosbridge -->
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />
+  <include file="$(find file_server)/launch/file_server.launch" />
+
+  <!-- init itar grasshopper moveit interface -->
+  <include file="$(find dfab_launch)/launch/dfab_gh_interface.launch" />
+
+  <group if="$(arg construct_octomap)">
+    <node pkg="tf" type="static_transform_publisher" name="holder_to_realsense"
+      args="0.0106 0.0175 0.0125 0  0 0 /sensor_mount /camera_link 50" />
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+      <arg name="enable_pointcloud" value="true"/>
+      <arg name="enable_sync" value="true"/>
+      <arg name="align_depth" value="true"/>   
+      <arg name="filters" value="pointcloud"/>
+    </include>
+  </group>
+
+  <include file="$(find pc2_pcl)/launch/pcl_service.launch"/>
+
+    
+</launch><!-- This is the launch file to launches both irb6640 and irb4400 together -->

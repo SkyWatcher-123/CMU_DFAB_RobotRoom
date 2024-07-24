@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name = "sim" default = "false"/>
+  <arg name = "robot_ip" default = "192.169.1.20"/>
+  <arg name = "add_eef" default= "false"/>
+  <arg name = "eef_filename" default="null"/>
+  <arg name = "tcp_offset_xyz" default = "'0 0 0'"/>
+  <arg name = "tcp_offset_rpy" default = "'0 0 0'"/>
+  <arg name = "add_sensor_mount" default = "false"/>
+  <arg name = "sensor_mount_filename" default = "null"/>
+  <arg name = "sensor_mount_offset_xyz" default = "'0 0 0'"/>
+  <arg name = "sensor_mount_offset_rpy" default = "'0 0 0'"/>
+  <arg name = "load_scene" default = "true"/>
+  <arg name = "scene_filename" default = "dfab_irb6640_light.scene"/>
+  <arg name = "construct_octomap" default = "false"/>
+  <arg name = "load_octomap" default = "false"/>
+  <arg name = "octomap_filename" default = "mull"/>
+
+  <!-- init irb6640 ros controller with customized end-effector -->
+  <include file="$(find abb_irb6640_moveit_config)/launch/moveit_planning_execution.launch">
+    <arg name="sim" value="$(arg sim)" />
+    <arg name="robot_ip" value="$(arg robot_ip)" />
+    <arg name="add_eef" value="$(arg add_eef)" />
+    <arg name="eef_filename" value="$(arg eef_filename)" />
+    <arg name="tcp_offset_xyz" value="$(arg tcp_offset_xyz)" />
+    <arg name="tcp_offset_rpy" value="$(arg tcp_offset_rpy)" />
+    <arg name="add_sensor_mount" value="$(arg add_sensor_mount)" />
+    <arg name="sensor_mount_filename" value="$(arg sensor_mount_filename)" />
+    <arg name="sensor_mount_offset_xyz" value="$(arg sensor_mount_offset_xyz)" />
+    <arg name="sensor_mount_offset_rpy" value="$(arg sensor_mount_offset_rpy)" />
+    
+  </include>
+
+  <group unless="$(arg sim)">
+    <include file="$(find abb_robot_bringup_examples)/launch/ex1_rws_only.launch">
+      <arg name="robot_ip" value="$(arg robot_ip)" />
+    </include>
+  </group>
+
+
+  <!-- To load a simple geometry scene(xxx.scene) -->
+  <group if="$(arg load_scene)">
+    <node name = "moveit_publish_scene_from_text" pkg= "moveit_ros_planning" type = "moveit_publish_scene_from_text" args= "/home/vina/catkin_ws/src/abb/abb_irb6640_moveit_config/scene/$(arg scene_filename)"/>
+  </group>
+
+  <!-- To load a pre-existing octomap -->
+  <group if="$(arg load_octomap)">
+    <node name="load_map" pkg="moveit_ros_move_group" type="load_map" args="$(arg octomap_filename)" output="screen"/>
+  </group>
+
+  
+  <!-- init grasshopper connection with rosbridge -->
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />
+  <include file="$(find file_server)/launch/file_server.launch" />
+
+  <!-- init itar grasshopper moveit interface -->
+  <include file="$(find dfab_launch)/launch/dfab_gh_interface.launch" />
+
+  <group if="$(arg construct_octomap)">
+    <node pkg="tf" type="static_transform_publisher" name="holder_to_realsense"
+      args="0.0106 0.0175 0.0125 0  0 0 /sensor_mount /camera_link 50" />
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+      <arg name="enable_pointcloud" value="true"/>
+      <arg name="enable_sync" value="true"/>
+      <arg name="align_depth" value="true"/>   
+      <arg name="filters" value="pointcloud"/>
+    </include>
+  </group>
+
+  <include file="$(find pc2_pcl)/launch/pcl_service.launch"/>
+
+    
+</launch>

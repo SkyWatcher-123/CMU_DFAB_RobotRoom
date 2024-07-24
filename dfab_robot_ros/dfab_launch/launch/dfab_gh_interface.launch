@@ -1,0 +1,6 @@
+<launch>
+
+  <node name="itar_movegroup_interface" pkg="dfab_launch" type="ITAR_basic_template_IRB120.py" respawn="false" output="screen">
+  </node>
+
+</launch>

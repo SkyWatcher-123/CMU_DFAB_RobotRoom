@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+
+<robot name="abb_irb4400_45_196" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:property name="add_eef_xacro" value="$(arg add_eef)"/> 
+  <xacro:property name="eef_filename_xacro" value="$(arg eef_filename)" />  
+  <xacro:property name="tcp_offset_xyz_xacro" value="$(arg tcp_offset_xyz)"/>
+  <xacro:property name="tcp_offset_rpy_xacro" value="$(arg tcp_offset_rpy)"/>
+  <xacro:property name="add_sensor_mount_xacro" value="$(arg add_sensor_mount)"/>
+  <xacro:property name="sensor_mount_filename_xacro" value="$(arg sensor_mount_filename)"/>
+  <xacro:property name="sensor_mount_offset_xyz_xacro" value="$(arg sensor_mount_offset_xyz)"/>
+  <xacro:property name="sensor_mount_offset_rpy_xacro" value="$(arg sensor_mount_offset_rpy)"/> 
+  
+  <xacro:include filename="$(find abb_irb4400_45_support)/urdf/irb4400_45_196_macro.xacro"/>
+  <xacro:abb_irb4400_45_196 prefix=""/>
+</robot>

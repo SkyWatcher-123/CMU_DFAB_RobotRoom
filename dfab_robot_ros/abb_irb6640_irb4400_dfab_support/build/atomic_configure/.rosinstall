@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/vina/catkin_ws/src/abb_irb6640_irb4400_dfab_support/build/devel/setup.sh
